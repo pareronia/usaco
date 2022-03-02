@@ -98,8 +98,19 @@ public abstract class TestBase<T> {
             }
             final String input = sb.toString();
             final List<String> expectedOutput = new ArrayList<>();
-            for (int j = 0; j < numberOfOutputLinesPerTestCase(); j++) {
-                expectedOutput.add(out.readLine());
+            final int linesOut = numberOfOutputLinesPerTestCase();
+            if (linesOut < 0) {
+                while (true) {
+                    final String line = out.readLine();
+                    if (line == null) {
+                        break;
+                    }
+                    expectedOutput.add(line);
+                }
+            } else {
+                for (int j = 0; j < linesOut; j++) {
+                    expectedOutput.add(out.readLine());
+                }
             }
             return new FileTestCase(file.getName(), i, input, expectedOutput);
         } catch (final IOException e) {
@@ -112,7 +123,7 @@ public abstract class TestBase<T> {
     }
     
     protected int numberOfOutputLinesPerTestCase() {
-        return 1;
+        return -1;
     }
     
     protected boolean useFile(final String fileName) {
