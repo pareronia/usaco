@@ -1,6 +1,5 @@
 package com.github.pareronia.usaco;
 
-import static java.lang.Boolean.FALSE;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -187,9 +186,13 @@ public abstract class TestBase<T> {
     			= this.klass.getDeclaredConstructor(
     			        Boolean.class, InputStream.class, PrintStream.class);
         final PrintStream out = new PrintStream(baos, true);
-        return constructor.newInstance(FALSE, in, out);
+        return constructor.newInstance(isDebug(), in, out);
     }
-
+    
+    protected boolean isDebug() {
+        return false;
+    }
+    
 	@RequiredArgsConstructor
 	protected static final class FileTestCase {
 	    @Getter
