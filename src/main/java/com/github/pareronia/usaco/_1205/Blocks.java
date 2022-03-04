@@ -1,4 +1,4 @@
-package com.github.pareronia.usaco._1193;
+package com.github.pareronia.usaco._1205;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toSet;
@@ -24,7 +24,7 @@ import java.util.StringTokenizer;
 
 /**
  * Problem 3. Blocks
- * @see <a href="http://www.usaco.org/index.php?page=viewproblem&cpid=1193">http://www.usaco.org/index.php?page=viewproblem&cpid=1193</a>
+ * @see <a href="http://www.usaco.org/index.php?page=viewproblem&cpid=1205">http://www.usaco.org/index.php?page=viewproblem&cpid=1205</a>
  */
 public class Blocks {
 
