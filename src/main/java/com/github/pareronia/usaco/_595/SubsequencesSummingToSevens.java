@@ -26,13 +26,13 @@ public class SubsequencesSummingToSevens {
 
     private final InputStream in;
     private final PrintStream out;
-    
+
     public SubsequencesSummingToSevens(
             final Boolean sample, final InputStream in, final PrintStream out) {
         this.in = in;
         this.out = out;
     }
-    
+
     private void handleTestCase(final Integer i, final FastScanner sc) {
         final int n = sc.nextInt();
         final long[] p = new long[n + 1];
@@ -51,7 +51,7 @@ public class SubsequencesSummingToSevens {
         }
         this.out.println(ans);
     }
-    
+
     public void solve() {
         try (final FastScanner sc = new FastScanner(this.in)) {
             final int numberOfTestCases = isSample() ? sc.nextInt() : 1;
@@ -75,9 +75,9 @@ public class SubsequencesSummingToSevens {
             is = SubsequencesSummingToSevens.class.getResourceAsStream("div7.in");
             out = new PrintStream(new FileOutputStream("div7.out"), true);
         }
-        
+
         new SubsequencesSummingToSevens(sample, is, out).solve();
-        
+
         out.flush();
         if (sample) {
             final long timeSpent = (System.nanoTime() - timerStart) / 1_000;
@@ -93,19 +93,18 @@ public class SubsequencesSummingToSevens {
                 time = timeSpent / 1_000_000.0;
                 unit = "s";
             }
-            final Path path
-                    = Paths.get(SubsequencesSummingToSevens.class.getResource("sample.out").toURI());
+            final Path path =
+                    Paths.get(SubsequencesSummingToSevens.class.getResource("sample.out").toURI());
             final List<String> expected = Files.readAllLines(path);
             final List<String> actual = asList(baos.toString().split("\\r?\\n"));
             if (!expected.equals(actual)) {
-                throw new AssertionError(String.format(
-                        "Expected %s, got %s", expected, actual));
+                throw new AssertionError(String.format("Expected %s, got %s", expected, actual));
             }
             actual.forEach(System.out::println);
             System.out.println(String.format("took: %.3f %s", time, unit));
         }
     }
-    
+
     private static boolean isSample() {
         try {
             return "sample".equals(System.getProperty("usaco"));
@@ -113,16 +112,16 @@ public class SubsequencesSummingToSevens {
             return false;
         }
     }
-    
+
     private static final class FastScanner implements Closeable {
         private final BufferedReader br;
         private StringTokenizer st;
-        
+
         public FastScanner(final InputStream in) {
             this.br = new BufferedReader(new InputStreamReader(in));
             st = new StringTokenizer("");
         }
-        
+
         public String next() {
             while (!st.hasMoreTokens()) {
                 try {
@@ -133,11 +132,11 @@ public class SubsequencesSummingToSevens {
             }
             return st.nextToken();
         }
-    
+
         public int nextInt() {
             return Integer.parseInt(next());
         }
-        
+
         @Override
         public void close() {
             try {
