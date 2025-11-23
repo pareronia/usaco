@@ -29,9 +29,6 @@ import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.function.ThrowingConsumer;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 public abstract class TestBase<T> {
 	
 	protected final Class<T> klass;
@@ -193,15 +190,33 @@ public abstract class TestBase<T> {
         return false;
     }
     
-	@RequiredArgsConstructor
 	protected static final class FileTestCase {
-	    @Getter
 	    private final String fileName;
-	    @Getter
 	    private final int number;
-	    @Getter
 	    private final String input;
-	    @Getter
 	    private final List<String> expectedOutput;
+
+	    public FileTestCase(final String fileName, final int number, final String input, final List<String> expectedOutput) {
+			this.fileName = fileName;
+			this.number = number;
+			this.input = input;
+			this.expectedOutput = expectedOutput;
+		}
+
+		public String getFileName() {
+			return fileName;
+		}
+
+		public int getNumber() {
+			return number;
+		}
+
+		public String getInput() {
+			return input;
+		}
+
+		public List<String> getExpectedOutput() {
+			return expectedOutput;
+		}
 	}
 }
