@@ -25,13 +25,12 @@ public class BreedCounting {
 
     private final InputStream in;
     private final PrintStream out;
-    
-    public BreedCounting(
-            final Boolean sample, final InputStream in, final PrintStream out) {
+
+    public BreedCounting(final Boolean sample, final InputStream in, final PrintStream out) {
         this.in = in;
         this.out = out;
     }
-    
+
     private void handleTestCase(final Integer i, final FastScanner sc) {
         final int n = sc.nextInt();
         final int q = sc.nextInt();
@@ -46,15 +45,17 @@ public class BreedCounting {
         for (int j = 0; j < q; j++) {
             final int a = sc.nextInt();
             final int b = sc.nextInt();
-            sb.append(br[0][b] - br[0][a - 1]).append(" ")
-                .append(br[1][b] - br[1][a - 1]).append(" ")
-                .append(br[2][b] - br[2][a - 1])
-                .append(System.lineSeparator());
+            sb.append(br[0][b] - br[0][a - 1])
+                    .append(" ")
+                    .append(br[1][b] - br[1][a - 1])
+                    .append(" ")
+                    .append(br[2][b] - br[2][a - 1])
+                    .append(System.lineSeparator());
         }
         final String ans = sb.toString();
         this.out.print(ans);
     }
-    
+
     public void solve() {
         try (final FastScanner sc = new FastScanner(this.in)) {
             final int numberOfTestCases = isSample() ? sc.nextInt() : 1;
@@ -78,9 +79,9 @@ public class BreedCounting {
             is = BreedCounting.class.getResourceAsStream("bcount.in");
             out = new PrintStream(new FileOutputStream("bcount.out"), true);
         }
-        
+
         new BreedCounting(sample, is, out).solve();
-        
+
         out.flush();
         if (sample) {
             final long timeSpent = (System.nanoTime() - timerStart) / 1_000;
@@ -96,19 +97,17 @@ public class BreedCounting {
                 time = timeSpent / 1_000_000.0;
                 unit = "s";
             }
-            final Path path
-                    = Paths.get(BreedCounting.class.getResource("sample.out").toURI());
+            final Path path = Paths.get(BreedCounting.class.getResource("sample.out").toURI());
             final List<String> expected = Files.readAllLines(path);
             final List<String> actual = asList(baos.toString().split("\\r?\\n"));
             if (!expected.equals(actual)) {
-                throw new AssertionError(String.format(
-                        "Expected %s, got %s", expected, actual));
+                throw new AssertionError(String.format("Expected %s, got %s", expected, actual));
             }
             actual.forEach(System.out::println);
             System.out.println(String.format("took: %.3f %s", time, unit));
         }
     }
-    
+
     private static boolean isSample() {
         try {
             return "sample".equals(System.getProperty("usaco"));
@@ -116,16 +115,16 @@ public class BreedCounting {
             return false;
         }
     }
-    
+
     private static final class FastScanner implements Closeable {
         private final BufferedReader br;
         private StringTokenizer st;
-        
+
         public FastScanner(final InputStream in) {
             this.br = new BufferedReader(new InputStreamReader(in));
             st = new StringTokenizer("");
         }
-        
+
         public String next() {
             while (!st.hasMoreTokens()) {
                 try {
@@ -136,11 +135,11 @@ public class BreedCounting {
             }
             return st.nextToken();
         }
-    
+
         public int nextInt() {
             return Integer.parseInt(next());
         }
-        
+
         @Override
         public void close() {
             try {
